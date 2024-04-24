@@ -129,11 +129,10 @@ export function createRequestHandler({
 
       // Mutate to add the expoUrl object.
       const params = updateRequestWithConfig(request, route);
-      Object.assign(params, env);
 
       try {
         // TODO: Handle undefined
-        return (await routeHandler(request, params, ctx)) as Response;
+        return (await routeHandler(request, params, env, ctx)) as Response;
       } catch (error) {
         if (error instanceof Error) {
           logApiRouteExecutionError(error);
